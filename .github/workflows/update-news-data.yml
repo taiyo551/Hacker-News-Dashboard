@@ -1,0 +1,50 @@
+name: Update news data
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "17 */6 * * *"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: update-news-data
+  cancel-in-progress: false
+
+jobs:
+  update-news-data:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+          cache-dependency-path: requirements-actions.txt
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -r requirements-actions.txt
+
+      - name: Update SQLite data
+        run: |
+          python scripts/update_sqlite_data.py --database data/hn_dashboard.sqlite --days 30
+
+      - name: Commit updated data
+        run: |
+          if git diff --quiet -- data/hn_dashboard.sqlite; then
+            echo "No SQLite data changes to commit."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/hn_dashboard.sqlite
+          git commit -m "Update news data"
+          git push
