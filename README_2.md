@@ -46,14 +46,8 @@ The dashboard detects stories that are currently gaining attention using their s
 
 This makes it possible to identify rapidly growing stories that may not yet have the highest absolute Hacker News score.
 
-<!-- Screenshot suggestion:
-Insert a cropped screenshot of the "Fast-moving stories" chart here.
-The chart should show several stories and their Momentum values.
-If possible, include the confidence legend as well.
+<img width="1258" height="567" alt="Image" src="https://github.com/user-attachments/assets/babdcac0-a7aa-4680-8fc0-f474b1ea429c" />
 
-Example:
-![Fast-moving stories](docs/images/momentum.png)
--->
 
 ### Article Explorer
 
