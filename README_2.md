@@ -99,16 +99,8 @@ It provides:
 
 Keyword analysis combines statistical text analysis with named entity recognition so that both technical phrases and entities such as technologies, products, and organizations can be surfaced.
 
-<!-- Screenshot suggestion:
-Insert a screenshot of the "Trends" tab here.
-The best screenshot would include:
-- Notable terms bar chart
-- Term history chart
-- Category movement or Rising and cooling terms
+<img width="1319" height="664" alt="Image" src="https://github.com/user-attachments/assets/b20d33d2-25c1-472f-a61f-b0144e59a0aa" />
 
-Example:
-![Technology trends](docs/images/trends.png)
--->
 
 ### Data Freshness Monitoring
 
