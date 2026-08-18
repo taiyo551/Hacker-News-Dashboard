@@ -7,18 +7,7 @@ Instead of simply listing popular stories, the application continuously collects
 **Live Demo:**  
 https://hacker-news-dashboard-eclsl2atzrrm6defzulnad.streamlit.app/
 
-<!-- Screenshot suggestion:
-Insert one large screenshot of the "Overview" tab here.
-Recommended content:
-- HN Tech Trend Radar title
-- Last updated / New today / article count / Rising terms metrics
-- Fast-moving stories chart
-- At least part of "Top stories right now"
-This should be the first image recruiters see because it communicates the overall purpose of the application immediately.
-
-Example:
-![HN Tech Trend Radar Overview](docs/images/overview.png)
--->
+<img width="1798" height="770" alt="Image" src="https://github.com/user-attachments/assets/63ed03d0-94ea-4e03-bf8c-b4fa762a4c4c" />
 
 ---
 
