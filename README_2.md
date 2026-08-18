@@ -70,20 +70,8 @@ Individual stories can be expanded for more detailed analysis, including:
 
 Related stories are identified using textual similarity.
 
-<!-- Screenshot suggestion:
-Insert a screenshot of one expanded article here.
-Recommended content:
-- Story title
-- HN Score / Comments / 24h Change / Importance
-- Keywords
-- Score/comment line chart
-- Related articles if they fit on the screen
+<img width="1216" height="749" alt="Image" src="https://github.com/user-attachments/assets/0fee6ad9-5a4c-4c74-aa9e-dde53b7133ab" />
 
-This screenshot is useful because it demonstrates that the project performs analysis rather than simply displaying HN data.
-
-Example:
-![Article analysis](docs/images/article-analysis.png)
--->
 
 ### Technology Trend Discovery
 
@@ -173,7 +161,7 @@ This keeps the deployed dashboard **read-only and self-contained**, without requ
 The repository also contains a local MySQL-based pipeline for additional data collection and enrichment.
 
 ```mermaid
-flowchart LR
+flowchart TD
     A[Hacker News / Web] --> B[Batch Jobs]
     B --> C[MySQL]
     C --> D[Analysis / Enrichment]
@@ -383,162 +371,3 @@ Git commit
       ↓
 Streamlit
 ```
-
----
-
-## Local Setup
-
-### 1. Clone the repository
-
-```bash
-git clone https://github.com/taiyo551/Hacker-News-Dashboard.git
-cd Hacker-News-Dashboard
-```
-
-### 2. Create a virtual environment
-
-#### Windows
-
-```powershell
-python -m venv venv
-venv\Scripts\activate
-```
-
-#### Linux / macOS
-
-```bash
-python -m venv venv
-source venv/bin/activate
-```
-
-### 3. Install dependencies
-
-```bash
-python -m pip install --upgrade pip
-pip install -r requirements.txt
-```
-
-### 4. Run the dashboard
-
-The repository already contains the public SQLite snapshot.
-
-```bash
-streamlit run app/main.py
-```
-
-The dashboard will use:
-
-```text
-data/hn_dashboard.sqlite
-```
-
-by default.
-
----
-
-## Local MySQL Pipeline
-
-For local batch processing, configure the following environment variables:
-
-```text
-DB_HOST
-DB_PORT
-DB_USER
-DB_PASSWORD
-DB_NAME
-```
-
-A local `.env` file can also be used.
-
-Database migration:
-
-```bash
-python scripts/migrate.py
-```
-
-Example batch execution:
-
-```bash
-python batch/fetch_articles.py
-python batch/record_snapshots.py
-python batch/enrich_articles.py
-python batch/fetch_comments.py
-python batch/extract_keywords.py
-python batch/summarize_articles.py
-```
-
-Then export the processed data to SQLite:
-
-```bash
-python scripts/export_sqlite.py
-```
-
-The export uses the most recent 30 days by default.
-
-To change the window:
-
-```bash
-python scripts/export_sqlite.py --days 14
-```
-
----
-
-## Optional Japanese Summarization
-
-The local pipeline supports Japanese article-title summarization through an Ollama server.
-
-Configure:
-
-```text
-OLLAMA_URL
-OLLAMA_MODEL
-```
-
-The default model name is:
-
-```text
-gemma3:4b
-```
-
-Summarization is optional and is not required to run the public Streamlit dashboard.
-
----
-
-## Tests
-
-Unit tests cover important analysis and scoring behavior, including:
-
-- Importance score calculation
-- Keyword normalization
-- Category classification
-- Search behavior
-- Story clustering
-- Momentum calculation
-- Keyword trend detection
-- Enrichment and analysis logic
-
-Run all tests with:
-
-```bash
-python -m unittest discover -s tests -v
-```
-
----
-
-## Data Source
-
-The primary data source is the **Hacker News API**.
-
-The application stores and analyzes information such as:
-
-- Story title
-- URL
-- Author
-- HN score
-- Number of comments
-- Publication time
-- Story type
-- Comments
-- Periodic score/comment snapshots
-
-The project is an independent portfolio project and is not affiliated with Hacker News or Y Combinator.
